@@ -260,3 +260,5 @@ elif p2int < 30:
     print("betting safe, red team")
 else:
     print("betting upset, blue team")"""
+
+#test to see if this commits? am i stupid?
