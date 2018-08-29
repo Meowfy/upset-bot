@@ -71,9 +71,7 @@ matchCounter = 0
 #checks mode to determine which logic to run
 mode = driver.find_element_by_xpath("""//*[@id="footer"]/div[3]""")
 modeCheck = mode.text
-exhib = driver.find_element_by_xpath("""//*[@id="footer-alert"]""")
-exCheck = exhib.text
-exhibsChecker = exCheck.find("exhibition" or "Exhibition")
+exhibsChecker = modeCheck.find("exhibition" or "Exhibition")
 mmChecker = modeCheck.find("until")
 #exhibsChecker1 = driver.find_element_by_xpath("""//*[@id="footer-alert"]""")
 #exhibsChecker2 = driver.find_element_by_xpath("""//*[@id="footer-alert"]""")
