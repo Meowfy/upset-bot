@@ -160,6 +160,11 @@ while exhibs == True:
     print("------------------------")
 
     time.sleep(60)
+    
+    if exhibsChecker != -1:
+        exhibs = True
+    else:
+        exhibs = False
 
 #later modified this to turn on if exhibs are NOT active
 while exhibs == False:
@@ -244,11 +249,14 @@ while exhibs == False:
 
     print("You have " + str(salt))
     print("------------------------")
+
+    time.sleep(60)
+
     if exhibsChecker != -1:
         exhibs = True
     else:
         exhibs = False
-    time.sleep(60)
+
 #implement/fix if i want to use safe bets
 """"elif p1int > 70:
     print("betting safe, red team")
