@@ -121,6 +121,10 @@ while exhibs == True:
     print("Match " + str(matchCounter))
     print("Exhibs are ON")
 
+    print(player1Winrate+ " - Red Team")
+    print(player2Winrate+ " - Blue Team")
+    print("------")
+
 
     if exhibsChecker1 != -1:
         t1p1 = float(player1Winrate[9:-6])
@@ -153,13 +157,17 @@ while exhibs == True:
         print("Betting upset, BLUE TEAM")
         player2Bet.click()
 
-    print(player1Winrate+ " - Red Team")
-    print(player2Winrate+ " - Blue Team")
-
     print("You have " + str(salt))
     print("------------------------")
 
+
+    if exhibsChecker != -1:
+        exhibs = True
+    else:
+        exhibs = False
+
     time.sleep(60)
+
 
 #later modified this to turn on if exhibs are NOT active
 while exhibs == False:
@@ -226,6 +234,7 @@ while exhibs == False:
 
     print(player1Winrate+ " - Red Team")
     print(player2Winrate+ " - Blue Team")
+    print("------")
 
     #if driver.find_element_by_xpath("""//*[@id="tournament-note"]"""):
         #print("tourney mode. All in!")
@@ -244,11 +253,17 @@ while exhibs == False:
 
     print("You have " + str(salt))
     print("------------------------")
+
+
+
     if exhibsChecker != -1:
         exhibs = True
     else:
         exhibs = False
+
     time.sleep(60)
+
+
 #implement/fix if i want to use safe bets
 """"elif p1int > 70:
     print("betting safe, red team")
