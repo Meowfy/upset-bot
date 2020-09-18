@@ -1,11 +1,13 @@
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 import time
 
-chrome_path = r"/usr/bin/chromedriver"
-driver = webdriver.Chrome(chrome_path)
+ff_path = r"/home/meowfy/Coding/geckodriver/"
+driver = webdriver.Firefox(ff_path)
 driver.get("https://mugen.saltybet.com/authenticate?signin=1")
 
 
@@ -20,6 +22,7 @@ emailInput.send_keys(loginEmail.read())
 
 passwordInput = driver.find_element_by_xpath("""//*[@id="pword"]""")
 passwordInput.send_keys(loginPass.read())
+passwordInput.send_keys(Keys.RETURN)
 
 findStats = WebDriverWait(driver, 90000).until(EC.text_to_be_present_in_element((By.XPATH, """//*[@id="bettors1"]/p[2]"""), "Win rate"))
 
@@ -119,7 +122,15 @@ while exhibs == True:
     print("------------------------")
     matchCounter += 1
     print("Match " + str(matchCounter))
-    print("Exhibs are ON")
+    print("EXHIBITIONS")
+
+    print(player1Winrate+ " - Red Team")
+    print(player2Winrate+ " - Blue Team")
+    print("------")
+
+    print(player1Winrate+ " - Red Team")
+    print(player2Winrate+ " - Blue Team")
+    print("------")
 
 
     if exhibsChecker1 != -1:
@@ -153,13 +164,17 @@ while exhibs == True:
         print("Betting upset, BLUE TEAM")
         player2Bet.click()
 
-    print(player1Winrate+ " - Red Team")
-    print(player2Winrate+ " - Blue Team")
-
     print("You have " + str(salt))
     print("------------------------")
 
+
+    if exhibsChecker != -1:
+        exhibs = True
+    else:
+        exhibs = False
+
     time.sleep(60)
+
 
 #later modified this to turn on if exhibs are NOT active
 while exhibs == False:
@@ -202,7 +217,7 @@ while exhibs == False:
 
     wager = driver.find_element_by_xpath("""//*[@id="wager"]""")
     if tourney == False:
-        wager.send_keys("8000")
+        wager.send_keys("10000")
     else:
         AllIn.click()
 
@@ -216,22 +231,25 @@ while exhibs == False:
 
     if tourney == False and exhibs == False:
         print("Match " + str(matchCounter))
-        print("Exhibs are OFF")
+        print("MATCHMAKING")
     elif exhibs == True:
         print("Match " + str(matchCounter))
-        print("Exhibs are ON")
+        print("EXHIBITIONS")
     else:
         print("Match " + str(matchCounter))
-        print("Tourney is ON")
+        print("TOURNAMENT")
 
     print(player1Winrate+ " - Red Team")
     print(player2Winrate+ " - Blue Team")
+    print("------")
 
     #if driver.find_element_by_xpath("""//*[@id="tournament-note"]"""):
         #print("tourney mode. All in!")
         #AllIn.click()
 
 #turns win rates into manageable integers
+    #p1int = int(float(player1Winrate[9:-1:])
+    #p2int = int(float(player2Winrate[9:-1:])
     p1int = float(player1Winrate[9:-1:])
     p2int = float(player2Winrate[9:-1:])
 
@@ -244,11 +262,17 @@ while exhibs == False:
 
     print("You have " + str(salt))
     print("------------------------")
+
+
+
     if exhibsChecker != -1:
         exhibs = True
     else:
         exhibs = False
+
     time.sleep(60)
+
+
 #implement/fix if i want to use safe bets
 """"elif p1int > 70:
     print("betting safe, red team")
